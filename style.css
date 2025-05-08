@@ -1,26 +1,76 @@
-/* style.css */
+/* ============================================
+   CONFIGURAÇÕES GERAIS
+============================================ */
+
+/* Garante que paddings e bordas não aumentem o tamanho dos elementos */
+* {
+    box-sizing: border-box;
+}
+
+/* Fonte padrão e fundo geral */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
     margin: 0;
     padding: 0;
 }
 
+/* Variáveis de cores principais do PWA */
+:root {
+    --cor-fundo: white;           /* Cor de fundo suave */
+    --cor-principal: wheat;       /* Azul profissional */
+    --cor-secundaria: #7FDB7F;      /* Verde acessível */
+    --cor-texto: #333333;           /* Texto escuro */
+    --cor-alerta: #F5A623;          /* Laranja de alerta */
+    --cor-sucesso: #2ECC71;   
+    --cor-slogan:rgb(22, 131, 22);
+        /* Verde de sucesso */
+}
+
+/* ============================================
+   CONTAINER PRINCIPAL
+============================================ */
+
 .container {
     max-width: 800px;
-    margin: 20px auto;
+    margin: 60px auto; /* Removido os 200px que quebravam no mobile */
     padding: 20px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* ============================================
+   CABEÇALHO E TÍTULOS
+============================================ */
+
+header {
+    background-color: var(--cor-principal);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    color: var(--cor-slogan);
+    margin-top: 20px;
+}
+
 h1 {
     text-align: center;
 }
 
-h2 {
-    margin-top: 20px;
+/* ============================================
+   FORMULÁRIOS
+============================================ */
+
+form {
+    margin: 20px;
+    padding: 15px;
+    background-color: wheat;
+    border: 10px solid #ddd;
+    border-radius: 10px;
 }
 
 label {
@@ -30,22 +80,82 @@ label {
 
 input, select, button {
     width: 100%;
-    padding: 8px;
-    margin: 5px 0 15px;
+    padding: 10px;
+    margin: 10px 0 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 1rem;
 }
+
+/* ============================================
+   BOTÕES
+============================================ */
 
 button {
     background-color: #28a745;
-    color: white;
+    color: black;
     border: none;
     cursor: pointer;
+    font-size: 1rem;
 }
 
 button:hover {
     background-color: #218838;
 }
+
+.botao-principal {
+    background-color: var(--cor-principal);
+    color: rgb(181, 183, 193);
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.botao-principal:hover {
+    background-color: #357ABD;
+}
+
+button.destaque {
+    background-color: var(--cor-secundaria);
+    color: white;
+}
+
+button.destaque:hover {
+    background-color: #58D68D;
+}
+
+.resultado-buttons {
+    margin-top: 20px;
+}
+
+.resultado-buttons button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+}
+
+.resultado-buttons button:hover {
+    background-color: #45a049;
+}
+
+/* ============================================
+   MENSAGENS
+============================================ */
+
+.mensagem-sucesso {
+    color: var(--cor-sucesso);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.mensagem-alerta {
+    color: var(--cor-alerta);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* ============================================
+   RESULTADO
+============================================ */
 
 #resultado {
     margin-top: 20px;
@@ -59,37 +169,41 @@ button:hover {
     margin: 5px 0;
 }
 
-/*mundaça do menu*/
-.servico-formulario {
-    display: none;
-}
+/* ============================================
+   MENU DE SERVIÇOS (tipo app)
+============================================ */
 
-.servico-formulario.ativo {
-    display: block;
-}
-/*Local do Menu */
 .servico-opcoes {
-    display: flex;
-    gap: 20px;
-    margin: 20px 0;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 2fr); /* 2 colunas fixas (ajustável no responsivo) */
+    gap: 15px;
+    padding: 22px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .servico-card {
-    background-color: #f1f1f1;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 20px 30px;
-    cursor: pointer;
+    background-color: white;
+    border-radius: 150px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     text-align: center;
-    font-size: 1.2rem;
-    transition: transform 0.2s, background-color 0.3s;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
 .servico-card:hover {
-    background-color: #dcdcdc;
     transform: scale(1.05);
+}
+
+.servico-card img {
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.servico-card span {
+    font-weight: bold;
+    display: block;
 }
 
 .servico-card.selecionado {
@@ -97,178 +211,119 @@ button:hover {
     color: white;
     border-color: #007BFF;
 }
+
+/* ============================================
+   FORMULÁRIOS DINÂMICOS POR SERVIÇO
+============================================ */
+
 .servico-formulario {
-  display: none;
+    display: none;
 }
 
 .servico-formulario.ativo {
-  display: block;
-}
-.servico-card.selecionado {
-  border: 2px solid #007bff;
-  background-color: #e6f0ff;
-}
-/* Estilização do Pwa com as cores principais/*
-/* Definindo as cores principais para o site usando variáveis CSS */
-:root {
-    /* Cor de fundo do site (lembre-se da leveza e simplicidade) */
-    --cor-fundo: #F7F7F7;  /* Um tom muito claro de cinza, leve e agradável */
-    
-    /* Cor principal (transmite confiança e segurança) */
-    --cor-principal: #4A90E2; /* Um azul suave e profissional */
-    
-    /* Cor secundária (para detalhes e botões de destaque) */
-    --cor-secundaria: #7FDB7F; /* Um verde que passa sensação de frescor e equilíbrio */
-    
-    /* Cor de texto principal (garante boa leitura) */
-    --cor-texto: #333333; /* Um tom escuro de cinza, para boa legibilidade */
-    
-    /* Cor para mensagens de alerta ou destaque */
-    --cor-alerta: #F5A623; /* Um tom laranja suave para chamar atenção sem ser agressivo */
-    
-    /* Cor para mensagens de sucesso */
-    --cor-sucesso: #2ECC71; /* Um verde mais forte, simbolizando resultados positivos */
+    display: block;
 }
 
-/* Aplicando a cor de fundo e texto padrão para o corpo do site */
-body {
-    background-color: var(--cor-fundo);  /* Usando a cor de fundo */
-    color: var(--cor-texto);  /* Usando a cor de texto principal */
-    font-family: 'Arial', sans-serif;  /* Fonte limpa e legível */
+/* ============================================
+   RESUMO DE ORÇAMENTO
+============================================ */
+
+.orcamento-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-/* Estilizando o cabeçalho (header) */
-header {
-    background-color: var(--cor-principal);  /* Cor azul para o cabeçalho */
-    color: white;  /* Cor branca para o texto */
-    padding: 20px;
-    text-align: center;
+.orcamento-header img {
+    height: 80px;
+    margin-right: 20px;
 }
 
-/* Estilizando o botão principal */
-.botao-principal {
-    background-color: var(--cor-principal);  /* Usando o azul para botões principais */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.botao-principal:hover {
-    background-color: #357ABD;  /* Um azul mais escuro quando o botão é pressionado */
-}
-
-/* Botão de destaque */
-button.destaque {
-    background-color: var(--cor-secundaria);  /* Usando verde suave */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button.destaque:hover {
-    background-color: #58D68D;  /* Um verde mais claro ao passar o mouse */
-}
-
-/* Exemplo de mensagem de sucesso */
-.mensagem-sucesso {
-    color: var(--cor-sucesso);  /* Usando o verde de sucesso */
-    font-size: 18px;
+.orcamento-header h2 {
+    font-size: 24px;
     font-weight: bold;
 }
 
-/* Exemplo de mensagem de alerta */
-.mensagem-alerta {
-    color: var(--cor-alerta);  /* Usando o laranja de alerta */
-    font-size: 18px;
-    font-weight: bold;
+.orcamento-info {
+    margin-top: 20px;
 }
 
-/* Definindo um formulário simples com espaçamento adequado */
-form {
-    margin: 20px;
+.orcamento-info p {
+    font-size: 16px;
+}
+
+.orcamento-resumo {
+    background: #f9f9f9;
     padding: 15px;
-    background-color: white;  /* Fundo branco para o formulário */
-    border: 1px solid #ddd;  /* Borda sutil */
-    border-radius: 10px;
+    border-radius: 8px;
+    margin-top: 20px;
 }
 
-/* Estilizando os inputs do formulário */
-input[type="text"], input[type="number"], select {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.orcamento-resumo h3 {
+    margin-top: 0;
 }
 
-/* Estilo para títulos e cabeçalhos */
-h1, h2, h3 {
-    color: var(--cor-principal);  /* Usando a cor principal (azul) para títulos */
+/* ============================================
+   DISABLED ELEMENTOS
+============================================ */
+
+.disabled {
+    opacity: 0.4;
+    pointer-events: none;
 }
 
-/* Estilo para os links */
-a {
-    color: var(--cor-principal);  /* Usando a cor azul para links */
-    text-decoration: none;
+/* ============================================
+   RESPONSIVIDADE (celular e tablet)
+============================================ */
+
+/* Celulares até 600px */
+@media (max-width: 600px) {
+    .container {
+        margin: 30px 10px;
+        padding: 15px;
+    }
+
+    .servico-opcoes {
+        grid-template-columns: 1fr; /* Uma coluna apenas */
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .servico-card {
+        padding: 20px;
+        border-radius: 50px;
+    }
+
+    .orcamento-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .orcamento-header img {
+        height: 60px;
+        margin: 0 0 10px 0;
+    }
+
+    .header-text h2 {
+        font-size: 1rem;
+    }
+
+    input, select, button {
+        font-size: 1rem;
+    }
+
+    .orcamento-resumo {
+        font-size: 14px;
+    }
 }
 
-a:hover {
-    text-decoration: underline;
+/* Tablets até 900px */
+@media (max-width: 900px) {
+    .container {
+        margin: 60px 20px;
+    }
+
+    .servico-opcoes {
+        grid-template-columns: 1fr 1fr;
+    }
 }
-        /* Adicionando estilo para o resumo de orçamento */
-        .orcamento-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .orcamento-header img {
-            height: 80px;
-            margin-right: 20px;
-        }
-
-        .orcamento-header h2 {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .orcamento-info {
-            margin-top: 20px;
-        }
-
-        .orcamento-info p {
-            font-size: 16px;
-        }
-
-        .orcamento-resumo {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-
-        .orcamento-resumo h3 {
-            margin-top: 0;
-        }
-
-        .resultado-buttons {
-            margin-top: 20px;
-        }
-
-        .resultado-buttons button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .resultado-buttons button:hover {
-            background-color: #45a049;
-        }
