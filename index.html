@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrçaFácil</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <h1>OrçaFácil - Cálculos de Orçamento</h1>
+        <img src="logoOrcaFacil.jpeg" alt="Logo OrçaFácil" style="height:200px; float:left; margin-left: 1%;">
+
+        <!-- Formulário para selecionar o serviço menu Principal -->
+        <form id="orcamento-form">
+            <div id="servico-opcoes" class="servico-opcoes">
+                <div class="servico-card" data-servico="piso">Assentamento de Piso</div>
+                <div class="servico-card" data-servico="reboco">Reboco</div>
+                <div class="servico-card" data-servico="contrapiso">Betomilha/Contrapiso (em breve)</div>
+                <div class="servico-card" data-servico="pintura">Pintura (em breve)</div> 
+                <div class="servico-card" data-servico="gesso">Pladur/Drywall (em breve)</div>
+                <div class="servico-card" data-servico="eletrica">Eletrica (em breve)</div>
+                <div class="servico-card" data-servico="hidraulica">Hidráulica (em breve)</div>
+                <div class="servico-card" data-servico="Alvenaria">Alvenaria (em breve)</div>
+            </div>
+
+            <!-- Seções do cálculo de orçamento (Piso, Reboco, etc.) -->
+            <div id="form-piso" class="servico-formulario">
+                <h2>Assentamento de Piso</h2>
+                <label for="nome">Nome do Cliente:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="comodos">Quantos Cômodos?</label>  
+                <input type="number" id="comodos" name="comodos" min="1" required>
+                <div id="campos-nome-comodos"></div>
+
+                <label>Deseja nomear os cômodos?</label>
+                <input type="radio" name="nomear" value="sim" id="nomearSim"> <label for="nomearSim">Sim</label>
+                <input type="radio" name="nomear" value="nao" id="nomearNao" checked> <label for="nomearNao">Não</label>
+                <button type="button" onclick="calcularOrcamento()">Calcular Piso</button>
+                <button type="button" onclick="voltarAoMenu()">Voltar ao Menu Principal</button>
+            </div>
+
+            <!-- Seção do cálculo de orçamento do Reboco -->
+            <div id="form-reboco" class="servico-formulario">
+                <h2>Cálculo de Reboco</h2>
+                <label for="nome">Nome do Cliente:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="paredes">Número de Paredes:</label>
+                <input type="number" id="paredes" name="paredes" required>
+
+                <label for="altura">Altura das Paredes (m):</label>
+                <input type="number" id="altura" name="altura" required>
+
+                <label for="largura">Largura das Paredes (m):</label>
+                <input type="number" id="largura" name="largura" required>
+
+                <label for="traco">Digite o traço desejado (ex: 1:3):</label>
+                <input type="text" id="traco" name="traco" required>
+
+                <button type="button" onclick="calcularReboco()">Calcular Reboco</button>
+                <button type="button" onclick="voltarAoMenu()">Voltar ao Menu Principal</button>
+
+            </div>
+
+            <div id="resultado">
+                <!-- Resultados do orçamento serão exibidos aqui -->
+            </div>
+
+            <div class="resultado-buttons">
+                <button type="button" onclick="gerarPDF()">Gerar PDF</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
